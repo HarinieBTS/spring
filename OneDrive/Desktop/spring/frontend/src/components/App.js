@@ -26,30 +26,50 @@ const App = () => {
     }
   }, []);
 
+  const handleLogin = (userData) => {
+    console.log("User Logged In:", userData);
+    setIsAuthenticated(true);
+  };
+
+  const handleRegister = (userData) => {
+    console.log("New User Registered:", userData);
+  };
+
   const handleAddUser = (newUser) => {
     if (editUser) {
-      setUsers(users.map(user => user.id === editUser.id ? newUser : user));
+      const updatedUsers = users.map(user => user.id === editUser.id ? newUser : user);
+      setUsers(updatedUsers);
+      console.log("User Edited:", newUser);
       setEditUser(null);
     } else {
-      setUsers([...users, { id: uuidv4(), ...newUser }]);
+      const updatedUsers = [...users, { id: uuidv4(), ...newUser }];
+      setUsers(updatedUsers);
+      console.log("New User Added:", newUser);
     }
   };
 
   const handleEditUser = (id) => {
     const userToEdit = users.find(user => user.id === id);
     setEditUser(userToEdit);
+    console.log("Editing User:", userToEdit);
   };
 
   const handleDeleteUser = (id) => {
-    setUsers(users.filter((user) => user.id !== id));
+    const updatedUsers = users.filter((user) => user.id !== id);
+    setUsers(updatedUsers);
+    console.log("User Deleted, Remaining Users:", updatedUsers);
   };
 
   const handleAddContact = (newContact) => {
-    setContacts([...contacts, { id: uuidv4(), ...newContact }]);
+    const updatedContacts = [...contacts, { id: uuidv4(), ...newContact }];
+    setContacts(updatedContacts);
+    console.log("New Contact Added:", newContact);
   };
 
   const handleDeleteContact = (id) => {
-    setContacts(contacts.filter((contact) => contact.id !== id));
+    const updatedContacts = contacts.filter((contact) => contact.id !== id);
+    setContacts(updatedContacts);
+    console.log("Contact Deleted, Remaining Contacts:", updatedContacts);
   };
 
   return (
@@ -63,8 +83,8 @@ const App = () => {
           </div>
         </nav>
         <Routes>
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
+          <Route path="/login" element={<Login onLogin={handleLogin} />} />
+          <Route path="/register" element={<Register onRegister={handleRegister} />} />
           <Route
             path="/"
             element={
