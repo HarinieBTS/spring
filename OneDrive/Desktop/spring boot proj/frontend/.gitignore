@@ -1,23 +1,49 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
-# dependencies
+# Dependencies
 /node_modules
 /.pnp
 .pnp.js
 
-# testing
+# Testing
 /coverage
 
-# production
+# Production build
 /build
 
-# misc
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Miscellaneous
 .DS_Store
+
+# OS-specific files
+Thumbs.db
+ehthumbs.db
+
+# Environment variables
+.env
+.env.*.local
 .env.local
 .env.development.local
 .env.test.local
 .env.production.local
 
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
+# Package managers
+.yarn/cache/
+.yarn/unplugged/
+.yarn/build-state.yml
+.yarn/install-state.gz
+
+# Editor-specific files
+.vscode/
+
+# Temporary build files
+/.parcel-cache
+/.turbo
+/.eslintcache
+/.cache
